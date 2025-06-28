@@ -2,7 +2,9 @@ package com.ijse.navigation.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -21,9 +23,24 @@ public class OnePageController {
     public AnchorPane ancPageOne;
 
     public void goPageTwoOnAction(ActionEvent actionEvent) throws IOException {
-        ancPageOne.getChildren().clear();
+//        inside window navigation
+//        ancPageOne.getChildren().clear();
+//
+//        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/PageTwo.fxml"));
+//        ancPageOne.getChildren().add(anchorPane);
 
+//        another way
+//        window navigation
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/PageTwo.fxml"));
-        ancPageOne.getChildren().add(anchorPane);
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(anchorPane);
+        stage.setTitle("Page two");
+        stage.setScene(scene);
+        stage.show();
+
+//        close prev window
+        Stage prevStage = (Stage) ancPageOne.getScene().getWindow();
+        prevStage.close();
     }
 }
